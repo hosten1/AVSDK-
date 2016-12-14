@@ -1,9 +1,20 @@
 # AVSDK-接口介绍及使用说明
 
-*注意：音视频的库需要依赖系统类库，在使用前必须导入以下的类库 *
+*注意:AVSDK库使用说明*
+ 1. 音视频的库需要依赖系统类库，在使用前必须导入以下的类库 
 
 
 ![AVSDK](https://github.com/hosten1/AVSDK-/blob/master/AVSDK_framework.png)   
+
+ 2. iOS10 需要添加访问权限
+
+```
+
+ Privacy - Camera Usage Description //相机权限
+ Privacy - Microphone Usage Description//麦克风权限
+ Privacy - Speech Recognition Usage Description//麦克风权限
+ Privacy - Bluetooth Peripheral Usage Description//蓝牙权限
+```
 
 # 一, 目录结构差异：
 1.头文件差异
