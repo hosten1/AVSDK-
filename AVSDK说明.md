@@ -1,6 +1,6 @@
 # AVSDK-接口介绍及使用说明
 
-* 注意：音视频的库需要依赖系统类库，在使用前必须导入以下的类库 *
+*注意：音视频的库需要依赖系统类库，在使用前必须导入以下的类库 *
 
 
 ![AVSDK](https://github.com/hosten1/AVSDK-/blob/master/AVSDK_framework.png)   
