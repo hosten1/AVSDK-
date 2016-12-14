@@ -83,8 +83,9 @@
 
 
 ```
+//接口参数说明在后面接口说明里
 -(void)objectClient:(AVObject *)obj didReceiveCallBackSDPString:(NSString *)sdpString withSDPType:(NSString *)type{
-    //发送一条消息
+    //发送一条消息(将SDP发送给对方，调用setRemoteSDP设置参数）
     if (![sdpString isEqualToString:@" " ] || !sdpString) {
                      
         }else{
@@ -95,7 +96,23 @@
 }
 
 ```
+  7. 收到被叫端sdp后调用:
+   
+   ```
+   [avsipObject setRemoteSDP:self.sdpString type:@"answer"];
 
+   ```
+  8. 接通后会回调该方法：
+
+  ```
+ //参数在后面有说明
+  - (void)sipObject:(AVSipObject *)sipObj didReceiveCallBackStatus:(MSG_TYPE)status;
+ //异常错误状态回调
+ - (void)sipObject:(AVSipObject *)sipObj errorStatu:(NSString *)errorType;
+
+
+  ```
+   
 # 二, AVSDK头文件：
 1.所有接口文件
 
