@@ -1,6 +1,7 @@
 # AVSDK-接口介绍及使用说明
 
-*注：* **kon**
+*注意：* ** 音视频的库需要依赖系统类库，在使用前必须导入以下的类库： **
+![AVSDK](https://github.com/hosten1/AVSDK-/blob/master/AVSDK_framework.png)   
 # 一, 目录结构差异：
 1.头文件差异
 
@@ -96,23 +97,31 @@
 
 # 三,回调接口:
 
-<div class="body">
-<ul style="color: red; margin-left: 20px" >
-<li style="color: red; margin-left: 20px" >回调返回状态<br>
-<code>
--(void) objectClient:(AVObject*)obj didReceiveCallBackStatus:(MSG_TYPE)status;
-</code>
-</li>
-<li>sdp数据<br>
-<code>
+* 回调返回状态
+
+```
+-(void) objectClient:(AVObject*)obj didReceiveCallBackStatus:(MSG_TYPE)status; 
+
+``` 
+
+
+* sdp数据
+
+``` 
 -(void) objectClient:(AVObject*)obj didReceiveCallBackSDPString:(NSString*)sdpString withSDPType:(NSString*)type; 
-</code>
-</li>
-<li>错误信息返回<br>
-<code>
+
+
+```
+
+
+* 错误信息返回
+
+```
+
 -(void) objectClient:(AVObject*)obj errorStatu:(NSError*)error;
-</code>
-</li>
-</ul>
-</div>
+ 
+
+
+```
+
 
