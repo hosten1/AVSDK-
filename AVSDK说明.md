@@ -22,11 +22,13 @@
 
 ```
 - (void)setAVParam:(AVParamsModel*)params;
+
 ```
 * 呼叫
 
 ```
 - (void)createOffer;
+
 ``` 
 
 *  接听
@@ -59,7 +61,9 @@
 
 * 视频采集开关
 
-``` - (void)setCaptureEnable:(BOOL)isEnableCapture; 
+```
+
+- (void)setCaptureEnable:(BOOL)isEnableCapture; 
 
 ``` 
 
