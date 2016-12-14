@@ -16,6 +16,10 @@
  Privacy - Bluetooth Peripheral Usage Description//蓝牙权限
 ```
 # 一, AVSDK使用流程：
+ 调用时序图：
+
+![AVSDK](https://github.com/hosten1/AVSDK-/blob/master/AVSDK_CONNECTION.png)   
+
  1. 项目中引入 *AVSDK.framework*（**导库的时候请仔细检查库是否导入，以及库的路劲是否准确**），需要使用音视频的地方导入 *#import <AVSipSDK/AVSipSDK.h>* 即可；
  2. 创建AVObject对象(主接口文件)：
 
@@ -79,23 +83,22 @@
       ```
   6. 参数回调(sdp):
 
-     主叫端调用**createOffer**或被叫端调用**createAnswer**后会回调该方法：
-
-
-```
-//接口参数说明在后面接口说明里
--(void)objectClient:(AVObject *)obj didReceiveCallBackSDPString:(NSString *)sdpString withSDPType:(NSString *)type{
-    //发送一条消息(将SDP发送给对方，调用setRemoteSDP设置参数）
-    if (![sdpString isEqualToString:@" " ] || !sdpString) {
+    
+  ```
+  // 主叫端调用**createOffer**或被叫端调用**createAnswer**后会回调该方法：
+  //接口参数说明在后面接口说明里
+   -(void)objectClient:(AVObject *)obj didReceiveCallBackSDPString:(NSString *)sdpString withSDPType:(NSString *)type{
+     //发送一条消息(将SDP发送给对方，调用setRemoteSDP设置参数）
+     if (![sdpString isEqualToString:@" " ] || !sdpString) {
                      
-        }else{
-            [self sendTextMessageWithVideo:sdpString msgType:DOODMESSAGE_CALLBACK_SDP session:self.sessionId];
+         }else{
         }
     }
 
-}
+ }
 
-```
+ ```
+
   7. 收到被叫端sdp后调用:
    
    ```
@@ -133,12 +136,21 @@
 * 初始化参数设置  
 
 ```
+/**
+*  音视频初始化参数设置
+*
+*  @param params 参数
+*
+*/
 - (void)setAVParam:(AVParamsModel*)params;
 
 ```
 * 呼叫
 
 ```
+/**
+*  呼叫时 调用
+*/
 - (void)createOffer;
 
 ``` 
@@ -146,6 +158,9 @@
 *  接听
 
 ```
+/**
+*  应答时 调用
+*/
 - (void)createAnswer;
 
 ```
@@ -154,12 +169,20 @@
 
 
 ```
+/**
+*  前后摄像头切换
+*/
 - (void)switchCamera; 
 
 ```
 * 静音设置
 
 ``` 
+/**
+*  静音设置（麦克风）
+*
+*  @param isEnableMic yes 开启
+*/
 -(void)setMicrophone:(BOOL) isEnableMic;
 
 ``` 
@@ -167,6 +190,11 @@
 * 外音听筒切换
 
 ``` 
+/**
+*  外音听筒切换
+*
+*  @param isEnableSpeaker 默认外音 no:开启听筒(蓝牙)
+*/
 - (void)setSpeaker:(BOOL) isEnableSpeaker;
 
 ``` 
@@ -174,7 +202,11 @@
 * 视频采集开关
 
 ```
-
+/**
+*  视频采集开关
+*
+*  @param isEnableCapture
+*/
 - (void)setCaptureEnable:(BOOL)isEnableCapture; 
 
 ``` 
@@ -182,6 +214,12 @@
 * SDP参数设置 
 
 ```
+/**
+sdp参数设置
+
+@param sdp sdp参数
+@param type 参数类型
+*/
 -(void)setRemoteSDP:(NSString *)sdp type:(NSString*)type; 
 
 ``` 
@@ -198,7 +236,11 @@
 * 音视频数据获取
 
 ```
-
+/**
+*  音视频数据获取
+*  数据接通后，音视频参数及设备状态回掉
+*  @param timerHandler 数据回调
+*/
 - (void)getStatsWithBlock:(void (^)(NSDictionary *stats))response; 
 
 
