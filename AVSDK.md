@@ -14,16 +14,16 @@
 
 |功能接口    | AVSDK    | AVSipSDK |
 | ---------------------- |----------------------------------- | --------------------------------------------------------- |
-| 初始化参数设置  | ```setAVParam:(AVParamsModel *) ```|         ``` setAVParam:(AVParamsModel *)```
-| 呼叫 | ```createOffer ``` |``` createOffer;```|
-|接听|``createAnswer```|```createAnswer```|
-|前后置摄像|```switchCamera```|```switchCamera```|
-|静音设置|```setMicrophone:(BOOL) isEnableMic``` | ```setMicrophone:(BOOL) isEnableMic``` |
-|外音听筒切换|```setSpeaker:(BOOL)``` | ``` setSpeaker:(BOOL) ```|
-|视频采集开关|```setCaptureEnable:(BOOL)```|```setCaptureEnable:(BOOL)```|
-| SDP参数设置 | ```setRemoteSDP:(NSString*) type:(NSString*);``` | ``` setRemoteSDP:(NSString*) type:(NSString*)；```|
-|资源释放|```destroy```|```destroy```|
-|音视频数据获取|``` getStatsWithBlock:(void(^)(NSDictionary*));```|无|
+| 初始化参数设置  | ``` - (void)setAVParam:(AVParamsModel*)params; ```|         ``` - (void)setAVParam:(AVParamsModel*)params; ```
+| 呼叫 | ``` - (void)createOffer; ``` |``` - (void)createOffer; ```|
+|接听|``` - (void)createAnswer; ```|``` - (void)createAnswer; ```|
+|前后置摄像|``` - (void)switchCamera; ```|``` - (void)switchCamera; ```|
+|静音设置|``` -(void)setMicrophone:(BOOL) isEnableMic; ``` | ``` -(void)setMicrophone:(BOOL) isEnableMic; ``` |
+|外音听筒切换|``` - (void)setSpeaker:(BOOL) isEnableSpeaker; ``` | ``` - (void)setSpeaker:(BOOL) isEnableSpeaker; ```|
+|视频采集开关|``` - (void)setCaptureEnable:(BOOL)isEnableCapture; ```|``` - (void)setCaptureEnable:(BOOL)isEnableCapture; ```|
+| SDP参数设置 | ``` -(void)setRemoteSDP:(NSString *)sdp type:(NSString*)type; ``` | ``` -(void)setRemoteSDP:(NSString *)sdp type:(NSString*)type; ```|
+|资源释放|``` - (void)destroy; ```|``` - (void)destroy; ```|
+|音视频数据获取|``` - (void)getStatsWithBlock:(void (^)(NSDictionary *stats))response; ```|无|
 
 
 
@@ -31,8 +31,8 @@
 
 |类型 | AVSDK | AVSipSDK|
 ------------|-----------------------------------|---------------------------
-| 回调返回状态 |``` objectClient:(AVObject*) didReceiveCallBackStatus:(MSG_TYPE); ```| ``` sipObject:(AVSipObject*) didReceiveCallBackStatus:(MSG_TYPE)``` |
-|sdp数据 | ```objectClient:(AVObject*) didReceiveCallBackSDPString:(NSString*) withSDPType:(NSString*);```| ``` sipObject:(AVSipObject*) didReceiveCallBackSDPString:(NSString*) withSDPType:(NSString*);```|
-| 错误信息返回 |``` objectClient:(AVObject*) errorStatu:(NSError*) ```| ``` sipObject:(AVSipObject*) errorStatu:(NSString*) ```|
+| 回调返回状态 |``` -(void) objectClient:(AVObject*)obj didReceiveCallBackStatus:(MSG_TYPE)status; ```| ``` -(void) sipObject:(AVSipObject*)sipObj didReceiveCallBackStatus:(MSG_TYPE)status; ``` |
+|sdp数据 | ``` -(void) objectClient:(AVObject*)obj didReceiveCallBackSDPString:(NSString*)sdpString withSDPType:(NSString*)type; ```| ``` -(void) sipObject:(AVSipObject*)sipObj didReceiveCallBackSDPString:(NSString*)sdpString withSDPType:(NSString*)type; ```|
+| 错误信息返回 |``` -(void) objectClient:(AVObject*)obj errorStatu:(NSError*)error; ```| ``` -(void) sipObject:(AVSipObject*)sipObj errorStatu:(NSString*)errorType; ```|
 
 
