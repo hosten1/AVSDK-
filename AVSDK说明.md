@@ -57,6 +57,7 @@
 
      ```
   5.主接口调用
+
     (1) 主叫端(发起通话请求)调用接口;
 
         ```
@@ -76,22 +77,24 @@
 
 
       ```
-    6. 参数回调(sdp):
+  6. 参数回调(sdp):
+
      主叫端调用**createOffer**或被叫端调用**createAnswer**后会回调该方法：
 
-     ```
-       -(void)objectClient:(AVObject *)obj didReceiveCallBackSDPString:(NSString *)sdpString withSDPType:(NSString *)type{
-               //发送一条消息
-                if (![sdpString isEqualToString:@" " ] || !sdpString) {
+
+```
+-(void)objectClient:(AVObject *)obj didReceiveCallBackSDPString:(NSString *)sdpString withSDPType:(NSString *)type{
+    //发送一条消息
+    if (![sdpString isEqualToString:@" " ] || !sdpString) {
                      
-                    }else{
-                                 [self sendTextMessageWithVideo:sdpString msgType:DOODMESSAGE_CALLBACK_SDP session:self.sessionId];
-                    }
-                }
+        }else{
+            [self sendTextMessageWithVideo:sdpString msgType:DOODMESSAGE_CALLBACK_SDP session:self.sessionId];
+        }
+    }
 
-            }
+}
 
-     ```
+```
 
 # 二, AVSDK头文件：
 1.所有接口文件
