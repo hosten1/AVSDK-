@@ -248,8 +248,25 @@ sdp参数设置
 
 
 ```
+*注:字典的键获取在AVConfig（不用再次导入）中,解析参照:*
+ ```
+  - (NSString *)statsStringWithDic:(NSDictionary*)dic {
+          NSMutableString *result = [NSMutableString string];
+
+          NSString *videoSendFormat = @"发送帧率:%@;码率:%@;分辨率:%@X%@\n";
+
+          [result appendString:[NSString stringWithFormat:videoSendFormat,dic[kStatsValueNameFrameRateSend],dic[kStatsValueNameFrameBitrateSend],
+          dic[kStatsValueNameFrameWidthSend], dic[kStatsValueNameFrameHeightSend]]];
+
+           // Video receive stats.
+           NSString *videoReceiveFormat = @"接收帧率:%@;码率:%@;分辨率:%@X%@\n";
+            [result appendString:[NSString stringWithFormat:videoReceiveFormat,dic[kStatsValueNameFrameRateReceived], dic[kStatsValueNameFrameBitrateReceived], dic[kStatsValueNameFrameWidthReceived], dic[kStatsValueNameFrameHeightReceived]]];
 
 
+      return result;
+}
+
+ ```
 
 # 四,回调接口:
 
