@@ -21,7 +21,11 @@
 
 ![AVSDK](https://github.com/hosten1/AVSDK-/blob/master/AVSDK_CONNECTION.png)   
 
- 1. 项目中引入 *AVSDK.framework*（**导库的时候请仔细检查库是否导入，以及库的路劲是否准确**），需要使用音视频的地方导入 *#import <AVSipSDK/AVSipSDK.h>* 即可；
+ 1. 库相关:
+
+    * 项目中引入 *AVSDK.framework*（**导库的时候请仔细检查库是否导入，以及库的路劲是否准确**;
+    * 需要使用音视频的地方导入 *#import \<AVSipSDK/AVSipSDK.h\>* 即可;
+
  2. 创建AVObject对象(主接口文件)：
 
     ```
