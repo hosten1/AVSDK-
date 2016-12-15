@@ -51,8 +51,9 @@
 
                }
         //(3) 打洞服务器（可以不用设置 默认为公网服务器）
-        model.paramIceServer = @"210.14.155.83";
-        model.paramIcePort   = @"3478";
+        //该地址只是示例，
+        model.paramIceServer = @"110.14.155.00";
+        model.paramIcePort   = @"1234";
         model.paramIceUser   = @"admin";
         model.paramIcePwd    = @"admin";
        //(4) 参数设置
