@@ -63,18 +63,16 @@
         model.paramIcePwd    = @"admin";
        //(4) 参数设置
        [self.avObject setAVParam:model];
-
-
      ```
-  5.主接口调用
+5. 主接口调用
 
-    -主叫端(发起通话请求)调用接口;
+      * 主叫端(发起通话请求)调用接口;
 
         ```
          [self.avObject createOffer];
 
         ```
-    -被叫端(接听方)调用接口:
+      * 被叫端(接听方)调用接口:
 
       ```
       /******************
@@ -85,7 +83,23 @@
        [self.avObject setRemoteSDP:self.sdpString type:@"offer"];
        [self.avObject createAnswer];//接听
       ```
-  6. 参数回调(sdp):
+ 
+6. 收到被叫端sdp后调用:
+   
+   ```
+    [avsipObject setRemoteSDP:self.sdpString type:@"answer"];
+   ```
+   
+7. 接通后会回调该方法：
+
+  ```
+    //参数在后面有说明
+      - (void)sipObject:(AVSipObject *)sipObj didReceiveCallBackStatus：(MSG_TYPE)status;
+     //异常错误状态回调
+      - (void)sipObject:(AVSipObject *)sipObj errorStatu:(NSString *)errorType;
+  ```
+  
+8. 参数回调(sdp):
 
     
   ```
@@ -102,24 +116,7 @@
  }
 
  ```
-
-  7.收到被叫端sdp后调用:
-   
-   ```
-   [avsipObject setRemoteSDP:self.sdpString type:@"answer"];
-
-   ```
-  8.接通后会回调该方法：
-
-  ```
- //参数在后面有说明
-  - (void)sipObject:(AVSipObject *)sipObj didReceiveCallBackStatus:(MSG_TYPE)status;
- //异常错误状态回调
- - (void)sipObject:(AVSipObject *)sipObj errorStatu:(NSString *)errorType;
-
-
-  ```
-   
+ 
 # 二, AVSDK头文件：
 
 1. 所有接口文件
