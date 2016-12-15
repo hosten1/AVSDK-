@@ -1,6 +1,7 @@
 # AVSDK-接口介绍及使用说明
 
 *注意:AVSDK库使用说明*
+* 目前该版本的库支持一对一视频和音频通话，主要功能接口：音视频通话接口(文档后续说明建立过程及对应接口)，通话中功能接口:挂断，拒接，静音，摄像头切换，听筒外音切换(蓝牙),停止视频采集（视频通话中转音频,参数获取(码率，帧率等详细参数参照相关头文件AVConfig);
  * 音视频的库需要依赖系统类库，在使用前必须导入以下的类库 
 
 
@@ -63,13 +64,13 @@
      ```
   5.主接口调用
 
-    (1) 主叫端(发起通话请求)调用接口;
+    -主叫端(发起通话请求)调用接口;
 
         ```
          [self.avObject createOffer];
 
         ```
-    (2) 被叫端(接听方)调用接口:
+    -被叫端(接听方)调用接口:
 
       ```
       /******************
@@ -79,8 +80,6 @@
       ********************/
        [self.avObject setRemoteSDP:self.sdpString type:@"offer"];
        [self.avObject createAnswer];//接听
-
-
       ```
   6. 参数回调(sdp):
 
@@ -100,13 +99,13 @@
 
  ```
 
-  7. 收到被叫端sdp后调用:
+  7.收到被叫端sdp后调用:
    
    ```
    [avsipObject setRemoteSDP:self.sdpString type:@"answer"];
 
    ```
-  8. 接通后会回调该方法：
+  8.接通后会回调该方法：
 
   ```
  //参数在后面有说明
@@ -118,20 +117,19 @@
   ```
    
 # 二, AVSDK头文件：
-1.所有接口文件
+
+1. 所有接口文件
 
 ![AVSDK](https://github.com/hosten1/AVSDK-/blob/master/AVSDKinclude.png)   
 
+2. AVObject 库主要文件，音视频主要接口都在改文件中，所有接口介绍在（三）介绍；
+3. AVConfig处理所有枚举和常量值；
 
-2.新增AVConfig处理所有枚举和常量值(原来放在AVSipObject.h中)；
+4. AVParamsModel 所有音视频参数通过该模型类传递;
 
-3.删除枚举中多余的无用的定义；和其他端枚举值统一;
+5. AVSDK 包含所有项目头文件，工程使用类库时，只需要引入该头文件；
 
 # 三, 主接口文件:
-
-1.	文件名重构前（AVSipObject），重构后(AVObject);
-
-2.	主要功能接口差异：
 
 
 * 初始化参数设置  
@@ -254,6 +252,14 @@ sdp参数设置
 * 回调返回状态
 
 ```
+/**
+*  svsdk 回调返回状态
+*
+*  @param obj sdk接口类
+*  @param status 状态回调
+
+*/
+
 -(void) objectClient:(AVObject*)obj didReceiveCallBackStatus:(MSG_TYPE)status; 
 
 ``` 
@@ -262,6 +268,14 @@ sdp参数设置
 * sdp数据
 
 ``` 
+/**
+*  svsdk 回调sdp数据
+*
+*  @param obj sdk接口类
+*  @param sdpString 回调sdp数据
+*  @param type  是主叫还是被叫(answer和offer)
+*/
+
 -(void) objectClient:(AVObject*)obj didReceiveCallBackSDPString:(NSString*)sdpString withSDPType:(NSString*)type; 
 
 
@@ -271,6 +285,12 @@ sdp参数设置
 * 错误信息返回
 
 ```
+/**
+*  音视频 错误信息返回
+*
+*  @param obj sdk接口类
+*  @param errorType 错误状态
+*/
 
 -(void) objectClient:(AVObject*)obj errorStatu:(NSError*)error;
  
